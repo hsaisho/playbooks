@@ -1,0 +1,4 @@
+---
+dependencies:
+ - { role: ../common-roles/oracle-java }
+ - { role: ../common-roles/cdh-repo-set }

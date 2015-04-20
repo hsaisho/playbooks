@@ -1,0 +1,23 @@
+ - name: Install CDH 5 with MRv1 Pseudo-distributed mode
+   yum: name=hadoop-0.20-conf-pseudo state=present
+
+ - copy: src=hdfs-start.sh dest=/root/hdfs-start.sh owner=root group=root mode=700
+
+ - copy: src=hdfs-stop.sh dest=/root/hdfs-stop.sh owner=root group=root mode=700 
+
+ - copy: src=mapred-start.sh dest=/root/mapred-start.sh owner=root group=root mode=700
+
+ - copy: src=mapred-stop.sh dest=/root/mapred-stop.sh owner=root group=root mode=700
+
+ - name: Format the NameNode
+   command: "sudo -u hdfs hdfs namenode -format"
+
+ - name: Start HDFS
+   command: "/root/hdfs-start.sh"
+
+ - name: Create the directories needed for Hadoop processes
+   command: "/usr/lib/hadoop/libexec/init-hdfs.sh"
+
+ - name: Start MapReduce
+   command: "/root/mapred-start.sh"
+

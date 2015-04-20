@@ -1,0 +1,4 @@
+dl_cdhrepo_pkg: "cloudera-cdh-5-0.x86_64.rpm"
+dl_cdhrepo_url: "http://archive.cloudera.com/cdh5/one-click-install/redhat/6/x86_64/cloudera-cdh-5-0.x86_64.rpm"
+dl_cdhrepo_path: "/tmp/{{ dl_cdhrepo_pkg }}"
+

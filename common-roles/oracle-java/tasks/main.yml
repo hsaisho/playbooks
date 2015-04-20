@@ -1,0 +1,31 @@
+ - name: Download Oracle JDK
+   command: "wget -q -O {{ dl_jdk_path }} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{ dl_jdk_url }} creates={{ dl_jdk_path }}"
+
+ - name: Install Oracle JDK
+   command: "rpm -Uvh {{ dl_jdk_path }}"
+
+ - name: Install java alternative
+   command: "alternatives --install /usr/bin/java java {{ set_jdk_path }}/bin/java 200000"
+
+ - name: Set java alternative
+   command: "alternatives --set java {{ set_jdk_path }}/bin/java"
+
+ - name: Install javac alternative
+   command: "alternatives --install /usr/bin/javac javac {{ set_jdk_path }}/bin/javac 200000"
+
+ - name: Set javac alternative
+   command: "alternatives --set javac {{ set_jdk_path }}/bin/javac"
+
+ - name: Install jar alternative
+   command: "alternatives --install /usr/bin/jar jar {{ set_jdk_path }}/bin/jar 200000"
+
+ - name: Set jar alternative
+   command: "alternatives --set jar {{ set_jdk_path }}/bin/jar"
+
+ - name: Downloaded Oracle JDK clean
+   command: "rm {{ dl_jdk_path }}"
+
+ - template: src=set_java_home.j2 dest=/etc/profile.d/setjavahome.sh owner=root group=root mode=0755 
+
+
+
