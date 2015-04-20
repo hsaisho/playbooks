@@ -1,0 +1,12 @@
+---
+ - group: name={{ asakusa_dev_gname }}
+
+ - user: name={{ asakusa_dev_uname }} shell=/bin/bash group={{ asakusa_dev_gname }}
+
+ - template: src=asakusa-develop_profile.j2 dest=/home/{{ asakusa_dev_uname }}/.asakusadev_profile owner={{ asakusa_dev_uname }} group={{ asakusa_dev_gname }} mode=0755
+
+ - lineinfile: dest=/home/{{ asakusa_dev_uname }}/.bash_profile line=". /home/asakusadev/.asakusadev_profile"
+
+ - name: Download Apach Hadoop pkg
+   get_url: url={{ dl_ap_hadoop_url }} dest={{ dl_ap_hadoop_path }} mode=0755
+
