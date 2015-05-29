@@ -1,0 +1,4 @@
+asakusa_dev_uname: "asakusadev"
+asakusa_develop_dir: "/home/{{ asakusa_dev_uname  }}/asakusa-develop"
+asakusa_home: "{{ asakusa_develop_dir }}/asakusa"
+asakusa_work_dir: "{{ asakusa_develop_dir }}/work"

@@ -1,6 +1,5 @@
 asakusa_dev_uname: "asakusadev"
-asakusa_dev_uhome_dir: "/home/{{ asakusa_dev_uname }}"
-asakusa_develop_dir: "{{ asakusa_dev_uhome_dir }}/asakusa-develop"
+asakusa_develop_dir: "/home/{{ asakusa_dev_uname  }}/asakusa-develop"
 asakusa_home: "{{ asakusa_develop_dir }}/asakusa"
 asakusa_hadoop_dir: "{{ asakusa_develop_dir }}/hadoop"
 asakusa_work_dir: "{{ asakusa_develop_dir }}/work"

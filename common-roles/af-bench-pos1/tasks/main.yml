@@ -1,13 +1,4 @@
 ---
- - name: make asakusa home dir
-   command: "mkdir -p {{ asakusa_dev_uhome_dir }}/.gradle"
-   become: yes
-   become_user: "{{ asakusa_dev_uname }}"
-
- - copy: src="gradle.properties" dest="{{ asakusa_dev_uhome_dir }}/.gradle/gradle.properties"
-   become: yes
-   become_user: "{{ asakusa_dev_uname }}"
-
  - name: Install git client
    yum: name=git state=present
 
@@ -15,7 +6,8 @@
    become: yes
    become_user: "{{ asakusa_dev_uname }}"
 
- - command: chdir="{{ asakusa_work_dir }}/af-bench-pos1" "./gradlew installAsakusafw"
+ - command: chdir="{{ asakusa_work_dir }}/af-bench-pos1" ./gradlew installAsakusafw
    become: yes
    become_user: "{{ asakusa_dev_uname }}"
-
+   environment:
+     ASAKUSA_HOME: "{{ asakusa_home }}"

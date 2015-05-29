@@ -1,0 +1,3 @@
+---
+ - { include: ./asakusa-develop-setting-root.yml }
+ - { include: ./asakusa-develop-setting-user.yml , become: yes , become_user: "{{ asakusa_dev_uname }}" }

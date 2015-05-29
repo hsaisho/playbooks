@@ -1,0 +1,23 @@
+---
+ - template: src=asakusa-develop_profile.j2 dest=/home/{{ asakusa_dev_uname }}/.asakusadev_profile
+
+ - lineinfile: dest=/home/{{ asakusa_dev_uname }}/.bash_profile line=". /home/{{ asakusa_dev_uname }}/.asakusadev_profile"
+
+ - name: Download Apach Hadoop pkg
+   get_url: url={{ dl_ap_hadoop_url }} dest={{ dl_ap_hadoop_path }} mode=0755
+
+ - name: make asakusa home dir
+   command: "mkdir -p {{ asakusa_home }}"
+
+ - name: uncompress Apach Hadoop pkg
+   command: "tar -zxf {{ dl_ap_hadoop_path }}"
+
+ - name: make asakusa hadoop dir
+   command: "mv {{ dl_ap_hadoop_version }} {{ asakusa_hadoop_dir }}"
+ 
+ - name: delete Apach Hadoop pkg
+   command: "rm {{ dl_ap_hadoop_path }}"
+
+ - name: make asakusa work dir
+   command: "mkdir -p {{ asakusa_work_dir }}"
+
