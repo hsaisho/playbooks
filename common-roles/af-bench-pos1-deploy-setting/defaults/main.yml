@@ -1,0 +1,3 @@
+af_dev_uname: "asakusadev"
+af_dev_work_dir: "{{ af_dev_develop_dir }}/work"
+

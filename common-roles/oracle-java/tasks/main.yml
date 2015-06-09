@@ -1,7 +1,8 @@
- - name: Download Oracle JDK
+ - name: Download Oracle JDK RPM Pkg
    command: "wget -q -O {{ dl_jdk_path }} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{ dl_jdk_url }} creates={{ dl_jdk_path }}"
+   environment: default_proxy_env
 
- - name: Install Oracle JDK
+ - name: Install Oracle JDK RPM Pkg
    command: "rpm -Uvh {{ dl_jdk_path }}"
 
  - name: Install java alternative
@@ -22,10 +23,11 @@
  - name: Set jar alternative
    command: "alternatives --set jar {{ set_jdk_path }}/bin/jar"
 
- - name: Downloaded Oracle JDK clean
+ - name: Delete Oracle JDK RPM Pkg
    command: "rm {{ dl_jdk_path }}"
 
- - template: src=set_java_home.j2 dest=/etc/profile.d/setjavahome.sh owner=root group=root mode=0755 
+ - name: Deploy JAVA_HOME setting Script
+   template: src=set_java_home.j2 dest=/etc/profile.d/setjavahome.sh owner=root group=root mode=0755 
 
 
 

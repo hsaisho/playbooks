@@ -2,3 +2,6 @@ dl_jdk_pkg: "jdk-7u80-linux-x64.rpm"
 dl_jdk_url: "http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.rpm"
 dl_jdk_path: "/tmp/{{ dl_jdk_pkg }}"
 set_jdk_path: "/usr/java/default"
+default_proxy_env:
+ http_proxy: ""
+ https_proxy: ""

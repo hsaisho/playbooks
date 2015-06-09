@@ -1,0 +1,10 @@
+ - name: Download CDH5 Red Hat/CentOS/Oracle 6 repo RPM Pkg
+   command: "wget -q -O {{ dl_cdhrepo_path }} {{ dl_cdhrepo_url }} creates={{ dl_cdhrepo_path }}"
+   environment: default_proxy_env
+
+ - name: Install CDH5 Red Hat/CentOS/Oracle 6 repo RPM Pkg
+   command: "rpm -Uvh {{ dl_cdhrepo_path }}"
+
+ - name: Delete CDH5 Red Hat/CentOS/Oracle 6 repo RPM Pkg
+   command: "rm {{ dl_cdhrepo_path }}"
+

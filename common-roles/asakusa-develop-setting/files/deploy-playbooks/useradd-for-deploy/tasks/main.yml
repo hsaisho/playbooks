@@ -1,0 +1,5 @@
+---
+ - group: name={{ af_dep_uname }}
+
+ - user: name={{ af_dep_uname }} shell=/bin/bash group={{ af_dep_uname }} password={{ af_dep_upass }}
+

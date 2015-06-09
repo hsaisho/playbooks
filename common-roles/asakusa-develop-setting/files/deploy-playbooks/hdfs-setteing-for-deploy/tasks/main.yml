@@ -1,0 +1,11 @@
+---
+ - name: make /user/ dir on HDFS
+   command: "hadoop fs -mkdir /user/{{ af_dep_uname }}"
+   become: yes
+   become_user: hdfs
+
+ - name: chowm /user/ dir on HDFS
+   command: "hadoop fs -chown {{ af_dep_uname }} /user/{{ af_dep_uname }}"
+   become: yes
+   become_user: hdfs
+

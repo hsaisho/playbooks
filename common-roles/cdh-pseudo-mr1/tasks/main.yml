@@ -1,5 +1,6 @@
  - name: Install CDH 5 with MRv1 Pseudo-distributed mode
    yum: name=hadoop-0.20-conf-pseudo state=present
+   environment: default_proxy_env
 
  - copy: src=hdfs-start.sh dest=/root/hdfs-start.sh owner=root group=root mode=700
 

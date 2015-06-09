@@ -1,0 +1,11 @@
+---
+ - name: mkdir gradle dir for proxy
+   command: "mkdir -p /home/{{ af_dev_uname }}/.gradle"
+   become: yes
+   become_user: "{{ af_dev_uname }}"
+
+ - name: Set gradle.properties
+   template: src=gradle_properties.j2 dest=/home/{{ af_dev_uname }}/.gradle/gradle.properties
+   become: yes
+   become_user: "{{ af_dev_uname }}"
+

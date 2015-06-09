@@ -1,0 +1,4 @@
+ - name: Download CDH5 Red Hat/CentOS/Oracle 6 repo file
+   command: "wget -q -O {{ dl_cdhrepo_path }} {{ dl_cdhrepo_url }} creates={{ dl_cdhrepo_path }}"
+
+

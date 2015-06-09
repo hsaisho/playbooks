@@ -1,0 +1,11 @@
+af_dev_uname: "asakusadev"
+af_dev_develop_dir: "/home/{{ af_dev_uname }}/asakusa-develop"
+af_dev_afhome_dir: "{{ af_dev_develop_dir }}/asakusa"
+af_dev_work_dir: "{{ af_dev_develop_dir }}/work"
+af_dev_gradle_opts: ""
+asakusa_dev_env:
+  ASAKUSA_HOME: "{{ af_dev_afhome_dir }}"
+  GRADLE_OPTS: " {{ af_dev_gradle_opts }} "
+default_proxy_env:
+  http_proxy: ""
+  https_proxy: ""

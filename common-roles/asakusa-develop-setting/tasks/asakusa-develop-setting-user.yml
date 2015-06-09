@@ -1,23 +1,33 @@
 ---
- - template: src=asakusa-develop_profile.j2 dest=/home/{{ asakusa_dev_uname }}/.asakusadev_profile
+ - name: Set asakusa-develop_profile
+   template: src=asakusa-develop_profile.j2 dest=/home/{{ af_dev_uname }}/.asakusadev_profile
 
- - lineinfile: dest=/home/{{ asakusa_dev_uname }}/.bash_profile line=". /home/{{ asakusa_dev_uname }}/.asakusadev_profile"
+ - name: Set .bash_profile to asakusa-develop_profile
+   lineinfile: dest=/home/{{ af_dev_uname }}/.bash_profile line=". /home/{{ af_dev_uname }}/.asakusadev_profile"
 
  - name: Download Apach Hadoop pkg
-   get_url: url={{ dl_ap_hadoop_url }} dest={{ dl_ap_hadoop_path }} mode=0755
+   command: "wget -q -O {{ af_dev_dl_hadoop_tmppath }} {{ af_dev_dl_hadoop_url }} creates={{ af_dev_dl_hadoop_tmppath }}"   
+   environment: 
+     default_proxy_env
 
  - name: make asakusa home dir
-   command: "mkdir -p {{ asakusa_home }}"
+   command: "mkdir -p {{ af_dev_afhome_dir }}"
 
  - name: uncompress Apach Hadoop pkg
-   command: "tar -zxf {{ dl_ap_hadoop_path }}"
+   command: "tar -zxf {{ af_dev_dl_hadoop_tmppath }}"
 
  - name: make asakusa hadoop dir
-   command: "mv {{ dl_ap_hadoop_version }} {{ asakusa_hadoop_dir }}"
+   command: "mv {{ af_dev_dl_hadoop_version }} {{ af_dev_hadoop_dir }}"
  
  - name: delete Apach Hadoop pkg
-   command: "rm {{ dl_ap_hadoop_path }}"
+   command: "rm {{ af_dev_dl_hadoop_tmppath }}"
 
  - name: make asakusa work dir
-   command: "mkdir -p {{ asakusa_work_dir }}"
+   command: "mkdir -p {{ af_dev_work_dir }}"
+
+ - name: make ansible dir
+   command: "mkdir -p /home/{{ af_dev_uname }}/ansible-playbooks"
+
+ - name: copy deploy-playbooks dir
+   copy: src=deploy-playbooks dest=/home/{{ af_dev_uname }}/ansible-playbooks
 

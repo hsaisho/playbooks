@@ -1,0 +1,4 @@
+af_dep_uname: "asakusa"
+af_dep_afhome_dir: "/home/{{ af_dep_uname }}/asakusa"
+af_dep_export: "{{ af_dep_afhome_dir }}/yaess/bin:$PATH"
+

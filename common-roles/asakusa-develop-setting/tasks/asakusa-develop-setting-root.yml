@@ -1,5 +1,16 @@
 ---
- - group: name={{ asakusa_dev_uname }}
+ - group: name={{ af_dev_uname }}
 
- - user: name={{ asakusa_dev_uname }} shell=/bin/bash group={{ asakusa_dev_uname}} password="$1$yhrhUweC$Mid/XE2LZLaiSMjQlOZ/B/"
+ - user: name={{ af_dev_uname }} shell=/bin/bash group={{ af_dev_uname }} password={{ af_dev_upass }}
+
+ - name: Install CentOS EPEL Repo
+   yum: name=epel-release state=present
+   environment:
+     default_proxy_env
+
+ - name: Install Ansible
+   yum: name=ansible state=present
+   environment: 
+     default_proxy_env
+
 

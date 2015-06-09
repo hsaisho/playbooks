@@ -1,0 +1,8 @@
+---
+- hosts: all
+  user: root
+  roles: 
+   - ../deploy-playbooks/useradd-for-deploy
+   - ../deploy-playbooks/user-setting-for-deploy
+   - ../deploy-playbooks/hdfs-setteing-for-deploy
+   - ./af-bench-pos1-deploy

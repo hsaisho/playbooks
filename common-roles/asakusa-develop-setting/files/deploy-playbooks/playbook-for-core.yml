@@ -1,0 +1,7 @@
+---
+- hosts: all
+  user: root
+  roles: 
+   - ./useradd-for-deploy
+   - ./user-setting-for-deploy
+   - ./hdfs-setteing-for-deploy

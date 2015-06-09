@@ -1,0 +1,24 @@
+---
+ - name: gradlew assemble 
+   command: chdir="{{ af_dev_work_dir }}/af-bench-pos1" ./gradlew assemble
+   become: yes
+   become_user: "{{ af_dev_uname }}"
+   environment:
+     ASAKUSA_HOME: "{{ af_dev_afhome_dir }}"
+
+ - name: copy af-bench-pos1-playbooks dir
+   copy: src=af-bench-pos1-playbooks dest=/home/{{ af_dev_uname }}/ansible-playbooks
+
+ - name: git clone af-bench-pos1-contrib
+   git: repo=https://github.com/hsaisho/af-bench-pos1-contrib.git dest="/home/{{ af_dev_uname }}/af-bench-pos1-contrib"
+   environment:
+     default_proxy_env
+
+ - name: copy asakusa deploy pkg for deploy 
+   shell: cp "{{ af_dev_work_dir }}"/af-bench-pos1/build/asakusafw-*.tar.gz /home/"{{ af_dev_uname }}"/ansible-playbooks/af-bench-pos1-playbooks/af-bench-pos1-deploy/files/deploy-pkg/
+
+ - name: copy af-bench-pos1-contrib for deploy
+   shell: cp -r /home/{{ af_dev_uname }}/af-bench-pos1-contrib/testdata-makescript /home/"{{ af_dev_uname }}"/ansible-playbooks/af-bench-pos1-playbooks/af-bench-pos1-deploy/files/
+
+ - name: delete af-bench-pos1-contrib
+   command: "rm -Rf /home/{{ af_dev_uname }}/af-bench-pos1-contrib"

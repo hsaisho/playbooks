@@ -1,5 +1,0 @@
-asakusa_dep_uname: "asakusa"
-asakusa_dep_homedir: "/home/{{ asakusa_dep_uname }}"
-asakusa_home: "{{ asakusa_dep_homedir }}/asakusa"
-asakusa_dep_expath: "{{ asakusa_home }}/yaess/bin:$PATH"
-

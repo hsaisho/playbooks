@@ -1,9 +1,0 @@
- - name: Download CDH5 Red Hat/CentOS/Oracle 6 repo rpm
-   command: "wget -q -O {{ dl_cdhrepo_path }} {{ dl_cdhrepo_url }} creates={{ dl_cdhrepo_path }}"
-
- - name: Install CDH repo
-   command: "rpm -Uvh {{ dl_cdhrepo_path }}"
-
- - name: Downloaded CDH repo clean
-   command: "rm {{ dl_cdhrepo_path }}"
-

@@ -1,0 +1,16 @@
+---
+ - name: deploy asakusa_profile
+   template: src=asakusa_profile.j2 dest=/home/{{ af_dep_uname }}/.asakusa_profile
+   become: yes
+   become_user: "{{ af_dep_uname }}"
+
+ - name: set asakusa_profile to bash_profile
+   lineinfile: dest=/home/{{ af_dep_uname }}/.bash_profile line=". /home/{{ af_dep_uname }}/.asakusa_profile"
+   become: yes
+   become_user: "{{ af_dep_uname }}"
+
+ - name: make asakusa home dir
+   command: "mkdir -p {{ af_dep_afhome_dir }}"
+   become: yes
+   become_user: "{{ af_dep_uname }}"
+

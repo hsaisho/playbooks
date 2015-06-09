@@ -1,0 +1,19 @@
+---
+ - name: Install git client
+   yum: name=git state=present
+   environment:
+     default_proxy_env
+
+ - name: git clone af-bench-pos1
+   git: repo=https://github.com/hsaisho/af-bench-pos1.git dest="{{ af_dev_work_dir }}/af-bench-pos1"
+   become: yes
+   become_user: "{{ af_dev_uname }}"
+   environment:
+     default_proxy_env
+
+ - name: install Asakusa Framework for Develop
+   command: chdir="{{ af_dev_work_dir }}/af-bench-pos1" ./gradlew installAsakusafw
+   become: yes
+   become_user: "{{ af_dev_uname }}"
+   environment: 
+     asakusa_dev_env
