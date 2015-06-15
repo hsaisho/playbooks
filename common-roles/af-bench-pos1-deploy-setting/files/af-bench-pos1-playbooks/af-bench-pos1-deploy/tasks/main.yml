@@ -1,12 +1,22 @@
 ---
  - name: copy asakusa deploy pkg
-   copy: src=deploy-pkg dest=/home/"{{ af_dep_uname }}"/ owner={{ af_dep_uname }}
+   copy: src=deploy-pkg dest=/home/{{ af_dep_uname }}/ owner={{ af_dep_uname }}
  
  - name: deploy pkg
    shell: tar -zxf /home/{{ af_dep_uname }}/deploy-pkg/asakusafw-*.tar.gz chdir="{{ af_dep_afhome_dir }}"
    become: yes
    become_user: "{{ af_dep_uname }}"
 
+ - name: remove deploy pkg
+   shell: rm -Rf /home/{{ af_dep_uname }}/deploy-pkg
+   become: yes
+   become_user: "{{ af_dep_uname }}"
+
  - name: copy af-bench-pos1-contrib
-   copy: src=testdata-makescript dest=/home/"{{ af_dep_uname }}"/ owner={{ af_dep_uname }}
+   copy: src=testdata-makescript dest=/home/{{ af_dep_uname }}/ owner={{ af_dep_uname }}
+
+ - name: set mode py script
+   shell: chmod +x *.py chdir=/home/{{ af_dep_uname }}/testdata-makescript
+   become: yes
+   become_user: "{{ af_dep_uname }}"
 
